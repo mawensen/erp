@@ -10,13 +10,13 @@ Commodity loss report, Raw materials purchase, Sales statistics, Commodity sales
 ### Tech Stack:
 - FrontEnd: JavaScript + bootstrap + jQuery + Highcharts + easyUI
 - BackEnd: Java + Spring Boot + Spring Data JPA + Apache Shiro
-- Database: MySQL (Earlier than version 6 would be good)
+- Database: MySQL
 
 ### Deployment Steps:
 - Create database and tables using db.sql which is in the path resource/sql/db.sql
 - Configure the database connection. The configuration file is /src/main/resources/application.yml. 
 Please modify lines 9 to 11. 
-- Startup this springboot application. Run src/main/java/com/java1234/JxcApplication.java
+- Startup this springboot application. Run src/main/java/com/yufeng/JxcApplication.java
 - Open browser, access localhost:80. The username is admin and the passcode is 1.
 
 
