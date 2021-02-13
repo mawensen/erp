@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Accordion Content with AJAX - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Loading Accordion Content with AJAX</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click AJAX panel header to load content via AJAX.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div class="easyui-accordion" style="width:500px;height:300px;">
+    <div data-options="iconCls:'icon-ok'" style="overflow:auto;padding:10px;" title="About">
+        <h3 style="color:#0099FF;">Accordion for jQuery</h3>
+        <p>Accordion is a part of easyui framework for jQuery. It lets you define your accordion component on web page
+            more easily.</p>
+    </div>
+    <div data-options="iconCls:'icon-help'" style="padding:10px;" title="Help">
+        <p>The accordion allows you to provide multiple panels and display one at a time. Each panel has built-in
+            support for expanding and collapsing. Clicking on a panel header to expand or collapse that panel body. The
+            panel content can be loaded via ajax by specifying a 'href' property. Users can define a panel to be
+            selected. If it is not specified, then the first panel is taken by default.</p>
+    </div>
+    <div data-options="href:'../accordion/_content.html'" style="padding:10px" title="Ajax">
+    </div>
+</div>
+</body>
+</html>

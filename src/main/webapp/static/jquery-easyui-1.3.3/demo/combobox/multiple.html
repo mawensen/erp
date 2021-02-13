@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple Select - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Load Dynamic ComboBox Data</h2>
+<div class="demo-info" style="margin-bottom:10px">
+    <div class="demo-tip icon-tip"></div>
+    <div>Drop down the panel and select multiple items.</div>
+</div>
+<input class="easyui-combobox"
+       data-options="
+					url:'../combobox/combobox_data1.json',
+					valueField:'id',
+					textField:'text',
+					multiple:true,
+					panelHeight:'auto'
+			"
+       name="language">
+
+</body>
+</html>

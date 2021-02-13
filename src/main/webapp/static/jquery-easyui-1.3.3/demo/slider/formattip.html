@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Format Tip Information - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Format Tip Information</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>This sample shows how to format tip information.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div style="margin-top:20px;">
+    <input class="easyui-slider" data-options="
+				showTip: true,
+				rule: [0,'|',25,'|',50,'|',75,'|',100],
+				tipFormatter: function(value){
+					return value+'px';
+				},
+				onChange: function(value){
+					$('#ff').css('font-size', value);
+				}" style="width:300px" value="12">
+</div>
+<div id="ff" style="margin-top:50px;font-size:12px">jQuery EasyUI</div>
+
+</body>
+</html>

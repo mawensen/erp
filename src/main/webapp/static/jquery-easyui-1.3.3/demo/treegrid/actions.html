@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>TreeGrid Actions - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>TreeGrid Actions</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the buttons below to perform actions.</div>
+</div>
+<div style="margin:10px 0;">
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="collapseAll()">CollapseAll</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="expandAll()">ExpandAll</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="expandTo()">ExpandTo</a>
+</div>
+<table class="easyui-treegrid" data-options="
+				iconCls: 'icon-ok',
+				rownumbers: true,
+				animate: true,
+				collapsible: true,
+				fitColumns: true,
+				url: '../treegrid/treegrid_data2.json',
+				idField: 'id',
+				treeField: 'name'
+			" id="tg" style="width:700px;height:250px"
+       title="TreeGrid Actions">
+    <thead>
+    <tr>
+        <th data-options="field:'name',width:180">Task Name</th>
+        <th data-options="field:'persons',width:60,align:'right'">Persons</th>
+        <th data-options="field:'begin',width:80">Begin Date</th>
+        <th data-options="field:'end',width:80">End Date</th>
+        <th data-options="field:'progress',width:120,formatter:formatProgress">Progress</th>
+    </tr>
+    </thead>
+</table>
+<script type="text/javascript">
+		function formatProgress(value){
+	    	if (value){
+		    	var s = '<div style="width:100%;border:1px solid #ccc">' +
+		    			'<div style="width:' + value + '%;background:#cc0000;color:#fff">' + value + '%' + '</div>'
+		    			'</div>';
+		    	return s;
+	    	} else {
+		    	return '';
+	    	}
+		}
+		function collapseAll(){
+			$('#tg').treegrid('collapseAll');
+		}
+		function expandAll(){
+			$('#tg').treegrid('expandAll');
+		}
+		function expandTo(){
+			$('#tg').treegrid('expandTo',21).treegrid('select',21);
+		}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add and Remove Layout - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Add and Remove Layout</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the buttons below to add or remove region panel of layout.</div>
+</div>
+<div style="margin:10px 0;">
+    <span>Select Region Panel:</span>
+    <select id="region">
+        <option value="north">North</option>
+        <option value="south">South</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+    </select>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="addPanel()">Add</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="removePanel()">Remove</a>
+</div>
+<div class="easyui-layout" id="cc" style="width:700px;height:350px;">
+    <div data-options="region:'north'" style="height:50px"></div>
+    <div data-options="region:'south',split:true" style="height:50px;"></div>
+    <div data-options="region:'east',split:true" style="width:100px;" title="East"></div>
+    <div data-options="region:'west',split:true" style="width:100px;" title="West"></div>
+    <div data-options="region:'center',title:'Center'"></div>
+</div>
+<script type="text/javascript">
+		function addPanel(){
+			var region = $('#region').val();
+			var options = {
+				region: region
+			};
+			if (region=='north' || region=='south'){
+				options.height = 50;
+			} else {
+				options.width = 100;
+				options.split = true;
+				options.title = $('#region option:selected').text();
+			}
+			$('#cc').layout('add', options);
+		}
+		function removePanel(){
+			$('#cc').layout('remove', $('#region').val());
+		}
+
+</script>
+</body>
+</html>

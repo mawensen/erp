@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Pagination Buttons - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Custom Pagination Buttons</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>The customized buttons can be append to page bar.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div class="easyui-pagination" data-options="total:114,buttons:buttons" style="border:1px solid #ddd;"></div>
+<script>
+		var buttons = [{
+			iconCls:'icon-add',
+			handler:function(){
+				alert('add');
+			}
+		},{
+			iconCls:'icon-cut',
+			handler:function(){
+				alert('cut');
+			}
+		},{
+			iconCls:'icon-save',
+			handler:function(){
+				alert('save');
+			}
+		}];
+
+</script>
+</body>
+</html>

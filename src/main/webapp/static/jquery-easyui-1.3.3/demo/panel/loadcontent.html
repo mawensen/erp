@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Load Panel Content - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Load Panel Content</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the refresh button on top right of panel to load content.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div class="easyui-panel" data-options="
+				tools:[{
+					iconCls:'icon-reload',
+					handler:function(){
+						$('#p').panel('refresh', '../panel/_content.html');
+					}
+				}]
+			" id="p" style="width:500px;height:200px;padding:10px;"
+     title="Load Panel Content">
+</div>
+</body>
+</html>

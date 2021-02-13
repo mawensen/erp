@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>客户管理</title>
+    <link href="/static/jquery-easyui-1.3.3/themes/default/easyui.css" rel="stylesheet" type="text/css"></link>
+    <link href="/static/jquery-easyui-1.3.3/themes/icon.css" rel="stylesheet" type="text/css"></link>
+    <script src="/static/jquery-easyui-1.3.3/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/jquery-easyui-1.3.3/jquery.easyui.min.js" type="text/javascript"></script>
+    <script src="/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+	var url;
+
+	function formatEdit(val,row){
+		return "<a href=\"javascript:openRoleChooseDialog('"+row.roles+"',"+row.id+")\"><img style='margin-top: 4px' src='/static/images/edit.gif' /></a>";
+	}
+	
+	function openRoleChooseDialog(roles,customerId){
+		var rolesArr=roles.split(",");
+		$("#roleSetDialog").dialog("open").dialog("setTitle","选择角色");
+		$("#roleDg").datagrid({
+					url:'/admin/role/listAll',
+					onLoadSuccess:function(data){
+						var selectedRows=$("#roleDg").datagrid('getRows');
+						for(var i=0;i<selectedRows.length;i++){
+							var name=selectedRows[i].name;
+							if($.inArray(name, rolesArr)>=0){
+								$("#roleDg").datagrid('checkRow',i);
+							}  
+						}
+					}
+		});
+		$("#customerId").val(customerId);
+	}
+	
+	function saveRoleSet(){
+		var customerId=$("#customerId").val();
+		var selectedRows=$("#roleDg").datagrid("getSelections");
+		var strRoleIds=[];
+		for(var i=0;i<selectedRows.length;i++){
+			strRoleIds.push(selectedRows[i].id);
+		}
+		var roleIds=strRoleIds.join(",");
+		$.post("/admin/customer/saveRoleSet",{roleIds:roleIds,customerId:customerId},function(result){
+			if(result.success){
+				closeRoleSetDialog();
+				$("#dg").datagrid("reload");
+			}else{
+				$.messager.alert("系统提示","提交失败，请联系管理员！");
+			}
+		},"json");
+	}
+	
+	function closeRoleSetDialog(){
+		 $("#roleSetDialog").dialog("close");
+	 }
+	
+	
+	
+	
+	function deleteCustomer(){
+		var selectedRows=$("#dg").datagrid("getSelections");
+		if(selectedRows.length==0){
+			 $.messager.alert("系统提示","请选择要删除的数据！");
+			 return;
+		 }
+		var strIds=[];
+		 for(var i=0;i<selectedRows.length;i++){
+			 strIds.push(selectedRows[i].id);
+		 }
+		 var ids=strIds.join(",");
+		 $.messager.confirm("系统提示","您确定要删除这<font color=red>"+selectedRows.length+"</font>条数据吗？",function(r){
+				if(r){
+					$.post("/admin/customer/delete",{ids:ids},function(result){
+						if(result.success){
+							 $.messager.alert("系统提示","数据已成功删除！");
+							 $("#dg").datagrid("reload");
+						}else{
+							$.messager.alert("系统提示",result.errorInfo);
+						}
+					},"json");
+				} 
+	   });
+	}
+	
+	
+	function openCustomerAddDialog(){
+		$("#dlg").dialog("open").dialog("setTitle","添加客户信息");
+		url="/admin/customer/save";
+	}
+	
+	function openCustomerModifyDialog(){
+		var selectedRows=$("#dg").datagrid("getSelections");
+		 if(selectedRows.length!=1){
+			 $.messager.alert("系统提示","请选择一条要修改的数据！");
+			 return;
+		 }
+		 var row=selectedRows[0];
+		 $("#dlg").dialog("open").dialog("setTitle","修改客户信息");
+		 $("#fm").form("load",row);
+		 $("#customerName").attr("readonly","readonly")
+		 url="/admin/customer/save?id="+row.id;
+	 }
+	
+	
+	
+	function saveCustomer(){
+		 $("#fm").form("submit",{
+			url:url,
+			onSubmit:function(){
+				return $(this).form("validate");
+			},
+			success:function(result){
+				var result=eval('('+result+')');
+				if(result.success){
+					$.messager.alert("系统提示","保存成功！");
+					resetValue();
+					$("#dlg").dialog("close");
+					$("#dg").datagrid("reload");
+				}else{
+					$.messager.alert("系统提示",result.errorInfo);
+				}
+			}
+		 });
+	 }
+	
+	
+	
+	function resetValue(){
+		 $("#name").val("");
+		 $("#contact").val("");
+		 $("#number").val("");
+		 $("#address").val("");
+		 $("#remarks").val("");
+	 }
+	
+	 function closeCustomerDialog(){
+		 $("#dlg").dialog("close");
+		 resetValue();
+	 }
+	 
+	 function searchCustomer(){
+		$("#dg").datagrid('load',{
+			"name":$("#s_name").val() 
+		});	
+	}
+	 
+	$(function () {  
+		 
+		 $("#dg").datagrid({  
+		        //双击事件  
+		        onDblClickRow: function (index, row) {  
+		        	$("#dlg").dialog("open").dialog("setTitle","修改客户信息");
+			   		 $("#fm").form("load",row);
+			   		 $("#customerName").attr("readonly","readonly")
+			   		 url="/admin/customer/save?id="+row.id;
+		        }  
+		    });  
+		 
+		 
+	 });
+	 
+
+
+    </script>
+</head>
+<body style="margin: 1px">
+<table class="easyui-datagrid" fit="true" fitColumns="true"
+       id="dg" pagination="true" rownumbers="true"
+       title="客户管理" toolbar="#tb" url="/admin/customer/list">
+    <thead>
+    <tr>
+        <th align="center" checkbox="true" field="cb"></th>
+        <th align="center" field="id" width="20">编号</th>
+        <th align="center" field="name" width="100">客户名称</th>
+        <th align="center" field="contact" width="50">联系人</th>
+        <th align="center" field="number" width="50">联系电话</th>
+        <th align="center" field="address" width="150">联系地址</th>
+        <th align="center" field="remarks" width="150">备注</th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <div>
+        <a class="easyui-linkbutton" href="javascript:openCustomerAddDialog()" iconCls="icon-add" plain="true">添加</a>
+        <a class="easyui-linkbutton" href="javascript:openCustomerModifyDialog()" iconCls="icon-edit"
+           plain="true">修改</a>
+        <a class="easyui-linkbutton" href="javascript:deleteCustomer()" iconCls="icon-remove" plain="true">删除</a>
+    </div>
+    <div>
+        &nbsp;客户名称：&nbsp;<input id="s_name" onkeydown="if(event.keyCode==13) searchCustomer()" size="20" type="text"/>
+        <a class="easyui-linkbutton" href="javascript:searchCustomer()" iconCls="icon-search" plain="true">搜索</a>
+    </div>
+</div>
+
+<div buttons="#dlg-buttons" class="easyui-dialog" closed="true"
+     data-options="onClose:function(){resetValue()}" id="dlg" style="width:500px;height:350px;padding: 10px 20px">
+
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>客户名称：</td>
+                <td><input class="easyui-validatebox" id="name" name="name" required="true" style="width: 250px"
+                           type="text"/></td>
+            </tr>
+            <tr>
+                <td>联系人：</td>
+                <td><input class="easyui-validatebox" id="contact" name="contact" required="true" style="width: 250px"
+                           type="text"/></td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td><input class="easyui-validatebox" id="number" name="number" required="true" style="width: 250px"
+                           type="text"/></td>
+            </tr>
+            <tr>
+                <td>联系地址：</td>
+                <td><input class="easyui-validatebox" id="address" name="address" required="true" style="width: 250px"
+                           type="text"/></td>
+            </tr>
+            <tr>
+                <td valign="top">备注：</td>
+                <td>
+                    <textarea cols="40" id="remarks" name="remarks" rows="5"></textarea>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="dlg-buttons">
+    <a class="easyui-linkbutton" href="javascript:saveCustomer()" iconCls="icon-ok">保存</a>
+    <a class="easyui-linkbutton" href="javascript:closeCustomerDialog()" iconCls="icon-cancel">关闭</a>
+</div>
+
+
+</body>
+</html>

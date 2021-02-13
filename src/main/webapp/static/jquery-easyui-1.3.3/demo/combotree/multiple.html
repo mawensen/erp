@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple ComboTree - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Multiple ComboTree</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the right arrow button to show the tree panel and select multiple nodes.</div>
+</div>
+<div style="margin:10px 0">
+    <span>Cascade Check: </span>
+    <input checked onclick="$('#cc').combotree({cascadeCheck:$(this).is(':checked')})" type="checkbox">
+</div>
+<select class="easyui-combotree" data-options="url:'../combotree/tree_data1.json'" id="cc" multiple
+        style="width:200px;"></select>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Icon Align on LinkButton - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Icon Align on LinkButton</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Change the icon align to place icon on left or right of button.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div id="button-bar">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-add'" href="#">Add</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-remove'" href="#">Remove</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-save'" href="#">Save</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-cut',disabled:true" href="#">Cut</a>
+</div>
+<div style="margin:10px 0">
+    <span>Select Icon Align: </span>
+    <select onchange="$('#button-bar a').linkbutton({iconAlign:this.value})">
+        <option value="left">Left</option>
+        <option value="right">Right</option>
+    </select>
+</div>
+</body>
+</html>

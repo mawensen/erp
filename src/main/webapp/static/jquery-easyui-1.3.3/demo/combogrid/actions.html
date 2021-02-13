@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ComboGrid Actions - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>ComboGrid Actions</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the buttons below to perform actions.</div>
+</div>
+<div style="margin:10px 0">
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="getValue()">GetValue</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="setValue()">SetValue</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="disable()">Disable</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="enable()">Enable</a>
+</div>
+<input class="easyui-combogrid" data-options="
+			panelWidth: 500,
+			idField: 'itemid',
+			textField: 'productname',
+			url: '../combogrid/datagrid_data1.json',
+			columns: [[
+				{field:'itemid',title:'Item ID',width:80},
+				{field:'productname',title:'Product',width:120},
+				{field:'listprice',title:'List Price',width:80,align:'right'},
+				{field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+				{field:'attr1',title:'Attribute',width:200},
+				{field:'status',title:'Status',width:60,align:'center'}
+			]],
+			fitColumns: true
+		" id="cc" style="width:250px">
+<script type="text/javascript">
+		function getValue(){
+			var val = $('#cc').combogrid('getValue');
+			alert(val);
+		}
+		function setValue(){
+			$('#cc').combogrid('setValue', 'EST-13');
+		}
+		function disable(){
+			$('#cc').combogrid('disable');
+		}
+		function enable(){
+			$('#cc').combogrid('enable');
+		}
+
+</script>
+</body>
+</html>

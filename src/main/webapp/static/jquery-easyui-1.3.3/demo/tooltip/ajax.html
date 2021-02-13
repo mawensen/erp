@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Tooltip - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Ajax Tooltip</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>The tooltip content can be loaded via AJAX.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<a class="easyui-tooltip" data-options="
+			content: $('<div></div>'),
+			onShow: function(){
+				$(this).tooltip('arrow').css('left', 20);
+				$(this).tooltip('tip').css('left', $(this).offset().left);
+			},
+			onUpdate: function(cc){
+				cc.panel({
+					width: 500,
+					height: 'auto',
+					border: false,
+					href: '../tooltip/_content.html'
+				});
+			}
+		" href="#">Hove me</a> to display tooltip content via AJAX.
+</body>
+</html>

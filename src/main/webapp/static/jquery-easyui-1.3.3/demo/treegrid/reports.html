@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reports using TreeGrid - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Reports using TreeGrid</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Using TreeGrid to show complex reports.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<table class="easyui-treegrid" data-options="
+				url: '../treegrid/treegrid_data3.json',
+				rownumbers: true,
+				showFooter: true,
+				idField: 'id',
+				treeField: 'region'
+			" style="width:700px;height:250px"
+       title="Reports using TreeGrid">
+    <thead frozen="true">
+    <tr>
+        <th field="region" width="200">Region</th>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
+        <th colspan="4">2009</th>
+        <th colspan="4">2010</th>
+    </tr>
+    <tr>
+        <th align="right" field="f1" width="60">1st qrt.</th>
+        <th align="right" field="f2" width="60">2st qrt.</th>
+        <th align="right" field="f3" width="60">3st qrt.</th>
+        <th align="right" field="f4" width="60">4st qrt.</th>
+        <th align="right" field="f5" width="60">1st qrt.</th>
+        <th align="right" field="f6" width="60">2st qrt.</th>
+        <th align="right" field="f7" width="60">3st qrt.</th>
+        <th align="right" field="f8" width="60">4st qrt.</th>
+    </tr>
+    </thead>
+</table>
+
+</body>
+</html>

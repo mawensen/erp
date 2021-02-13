@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ComboTree Actions - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>ComboTree Actions</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the buttons below to perform actions</div>
+</div>
+<div style="margin:10px 0">
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="getValue()">GetValue</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="setValue()">SetValue</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="disable()">Disable</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="enable()">Enable</a>
+</div>
+<input class="easyui-combotree" data-options="url:'../combotree/tree_data1.json',required:true" id="cc"
+       style="width:200px;">
+<script type="text/javascript">
+		function getValue(){
+			var val = $('#cc').combotree('getValue');
+			alert(val);
+		}
+		function setValue(){
+			$('#cc').combotree('setValue', '122');
+		}
+		function disable(){
+			$('#cc').combotree('disable');
+		}
+		function enable(){
+			$('#cc').combotree('enable');
+		}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tabs Tools - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Tabs Tools</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the buttons on the top right of tabs header to add or remove tab panel.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div class="easyui-tabs" data-options="tools:'#tab-tools'" id="tt" style="width:700px;height:250px">
+</div>
+<div id="tab-tools">
+    <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-add'" href="javascript:void(0)"
+       onclick="addPanel()"></a>
+    <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-remove'" href="javascript:void(0)"
+       onclick="removePanel()"></a>
+</div>
+<script type="text/javascript">
+		var index = 0;
+		function addPanel(){
+			index++;
+			$('#tt').tabs('add',{
+				title: 'Tab'+index,
+				content: '<div style="padding:10px">Content'+index+'</div>',
+				closable: true
+			});
+		}
+		function removePanel(){
+			var tab = $('#tt').tabs('getSelected');
+			if (tab){
+				var index = $('#tt').tabs('getTabIndex', tab);
+				$('#tt').tabs('close', index);
+			}
+		}
+
+</script>
+</body>
+</html>

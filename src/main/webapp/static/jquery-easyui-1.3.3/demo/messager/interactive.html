@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Messager - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Interactive Messager</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click on each button to display interactive message box.</div>
+</div>
+<div style="margin:10px 0;">
+    <a class="easyui-linkbutton" href="#" onclick="confirm1();">Confirm</a>
+    <a class="easyui-linkbutton" href="#" onclick="prompt1()">Prompt</a>
+</div>
+<script>
+		function confirm1(){
+			$.messager.confirm('My Title', 'Are you confirm this?', function(r){
+				if (r){
+					alert('confirmed: '+r);
+				}
+			});
+		}
+		function prompt1(){
+			$.messager.prompt('My Title', 'Please type something', function(r){
+				if (r){
+					alert('you type: '+r);
+				}
+			});
+		}
+
+</script>
+</body>
+</html>

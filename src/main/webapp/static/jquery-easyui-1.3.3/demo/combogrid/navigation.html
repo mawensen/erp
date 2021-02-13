@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Navigate ComboGrid - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Navigate ComboGrid</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Navigate through grid items with keyboard to select an item.</div>
+</div>
+<div style="margin:10px 0">
+    <input checked onchange="$('#cc').combogrid({selectOnNavigation:$(this).is(':checked')})" type="checkbox">
+    <span>SelectOnNavigation</span>
+</div>
+<select class="easyui-combogrid" data-options="
+			panelWidth: 500,
+			idField: 'itemid',
+			textField: 'productname',
+			url: '../combogrid/datagrid_data1.json',
+			columns: [[
+				{field:'itemid',title:'Item ID',width:80},
+				{field:'productname',title:'Product',width:120},
+				{field:'listprice',title:'List Price',width:80,align:'right'},
+				{field:'unitcost',title:'Unit Cost',width:80,align:'right'},
+				{field:'attr1',title:'Attribute',width:200},
+				{field:'status',title:'Status',width:60,align:'center'}
+			]],
+			fitColumns: true
+		" id="cc" style="width:250px">
+</select>
+
+</body>
+</html>

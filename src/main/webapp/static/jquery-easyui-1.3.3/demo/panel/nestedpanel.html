@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nested Panel - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Nested Panel</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>The panel can be placed inside containers and can contain other components.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<div class="easyui-panel" style="width:500px;height:200px;padding:10px;" title="Nested Panel">
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'west',split:true" style="width:100px;padding:10px">
+            Left Content
+        </div>
+        <div data-options="region:'center'" style="padding:10px">
+            Right Content
+        </div>
+    </div>
+</div>
+</body>
+</html>

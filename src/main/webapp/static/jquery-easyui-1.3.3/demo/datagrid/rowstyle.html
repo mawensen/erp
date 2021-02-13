@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DataGrid Row Style - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>DataGrid Row Style</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>The rows which listprice value is less than 30 are highlighted.</div>
+</div>
+<div style="margin:10px 0;"></div>
+<table class="easyui-datagrid" data-options="
+				singleSelect: true,
+				iconCls: 'icon-save',
+				url: '../datagrid/datagrid_data1.json',
+				rowStyler: function(index,row){
+					if (row.listprice < 30){
+						return 'background-color:#6293BB;color:#fff;font-weight:bold;';
+					}
+				}
+			" style="width:700px;height:250px"
+       title="DataGrid Row Style">
+    <thead>
+    <tr>
+        <th data-options="field:'itemid',width:80">Item ID</th>
+        <th data-options="field:'productid',width:100">Product</th>
+        <th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+        <th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
+        <th data-options="field:'attr1',width:250">Attribute</th>
+        <th data-options="field:'status',width:60,align:'center'">Status</th>
+    </tr>
+    </thead>
+</table>
+
+</body>
+</html>

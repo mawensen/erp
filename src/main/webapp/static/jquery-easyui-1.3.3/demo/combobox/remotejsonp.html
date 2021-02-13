@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Remote JSONP - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Remote JSONP</h2>
+<div class="demo-info" style="margin-bottom:10px">
+    <div class="demo-tip icon-tip"></div>
+    <div>This sample shows how to use JSONP to retrieve data from a remote site.</div>
+</div>
+<input class="easyui-combobox" data-options="
+				loader: myloader,
+				mode: 'remote',
+				valueField: 'id',
+				textField: 'name'
+			" style="width:250px">
+<script>
+		var myloader = function(param,success,error){
+			var q = param.q || '';
+			if (q.length <= 1){return false}
+			$.ajax({
+				url: 'http://ws.geonames.org/searchJSON',
+				dataType: 'jsonp',
+                data: {
+                    featureClass: "P",
+                    style: "full",
+                    maxRows: 20,
+                    name_startsWith: q
+                },
+				success: function(data){
+					var items = $.map(data.geonames, function(item){
+						return {
+							id: item.geonameId,
+							name: item.name + (item.adminName1 ? ', ' + item.adminName1 : '') + ', ' + item.countryName
+						};
+					});
+					success(items);
+				},
+                error: function(){
+					error.apply(this, arguments);
+				}
+			});
+		}
+
+</script>
+</body>
+</html>

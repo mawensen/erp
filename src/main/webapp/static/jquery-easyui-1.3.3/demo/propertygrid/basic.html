@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Basic PropertyGrid - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Basic PropertyGrid</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click on row to change each property value.</div>
+</div>
+<div style="margin:10px 0;">
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="showGroup()">ShowGroup</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="hideGroup()">HideGroup</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="showHeader()">ShowHeader</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="hideHeader()">HideHeader</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="getChanges()">GetChanges</a>
+</div>
+<table class="easyui-propertygrid" data-options="url:'../propertygrid/propertygrid_data1.json',showGroup:true,scrollbarSize:0" id="pg"
+       style="width:300px"></table>
+
+<script type="text/javascript">
+		function showGroup(){
+			$('#pg').propertygrid({
+				showGroup:true
+			});
+		}
+		function hideGroup(){
+			$('#pg').propertygrid({
+				showGroup:false
+			});
+		}
+		function showHeader(){
+			$('#pg').propertygrid({
+				showHeader:true
+			});
+		}
+		function hideHeader(){
+			$('#pg').propertygrid({
+				showHeader:false
+			});
+		}
+		function getChanges(){
+			var s = '';
+			var rows = $('#pg').propertygrid('getChanges');
+			for(var i=0; i<rows.length; i++){
+				s += rows[i].name + ':' + rows[i].value + ',';
+			}
+			alert(s)
+		}
+
+</script>
+</body>
+</html>

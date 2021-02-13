@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Row Editing DataGrid - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Row Editing DataGrid</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Click the row to start editing.</div>
+</div>
+<div style="margin:10px 0;"></div>
+
+<table class="easyui-datagrid" data-options="
+				iconCls: 'icon-edit',
+				singleSelect: true,
+				toolbar: '#tb',
+				url: '../datagrid/datagrid_data1.json',
+				onClickRow: onClickRow
+			" id="dg" style="width:700px;height:auto"
+       title="Row Editing DataGrid">
+    <thead>
+    <tr>
+        <th data-options="field:'itemid',width:80">Item ID</th>
+        <th data-options="field:'productid',width:100,
+						formatter:function(value,row){
+							return row.productname;
+						},
+						editor:{
+							type:'combobox',
+							options:{
+								valueField:'productid',
+								textField:'productname',
+								url:'../datagrid/products.json',
+								required:true
+							}
+						}">Product
+        </th>
+        <th data-options="field:'listprice',width:80,align:'right',editor:{type:'numberbox',options:{precision:1}}">List
+            Price
+        </th>
+        <th data-options="field:'unitcost',width:80,align:'right',editor:'numberbox'">Unit Cost</th>
+        <th data-options="field:'attr1',width:250,editor:'text'">Attribute</th>
+        <th data-options="field:'status',width:60,align:'center',editor:{type:'checkbox',options:{on:'P',off:''}}">
+            Status
+        </th>
+    </tr>
+    </thead>
+</table>
+
+<div id="tb" style="height:auto">
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" href="javascript:void(0)"
+       onclick="append()">Append</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" href="javascript:void(0)"
+       onclick="remove()">Remove</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" href="javascript:void(0)"
+       onclick="accept()">Accept</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" href="javascript:void(0)"
+       onclick="reject()">Reject</a>
+    <a class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" href="javascript:void(0)"
+       onclick="getChanges()">GetChanges</a>
+</div>
+
+<script type="text/javascript">
+		var editIndex = undefined;
+		function endEditing(){
+			if (editIndex == undefined){return true}
+			if ($('#dg').datagrid('validateRow', editIndex)){
+				var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'productid'});
+				var productname = $(ed.target).combobox('getText');
+				$('#dg').datagrid('getRows')[editIndex]['productname'] = productname;
+				$('#dg').datagrid('endEdit', editIndex);
+				editIndex = undefined;
+				return true;
+			} else {
+				return false;
+			}
+		}
+		function onClickRow(index){
+			if (editIndex != index){
+				if (endEditing()){
+					$('#dg').datagrid('selectRow', index)
+							.datagrid('beginEdit', index);
+					editIndex = index;
+				} else {
+					$('#dg').datagrid('selectRow', editIndex);
+				}
+			}
+		}
+		function append(){
+			if (endEditing()){
+				$('#dg').datagrid('appendRow',{status:'P'});
+				editIndex = $('#dg').datagrid('getRows').length-1;
+				$('#dg').datagrid('selectRow', editIndex)
+						.datagrid('beginEdit', editIndex);
+			}
+		}
+		function remove(){
+			if (editIndex == undefined){return}
+			$('#dg').datagrid('cancelEdit', editIndex)
+					.datagrid('deleteRow', editIndex);
+			editIndex = undefined;
+		}
+		function accept(){
+			if (endEditing()){
+				$('#dg').datagrid('acceptChanges');
+			}
+		}
+		function reject(){
+			$('#dg').datagrid('rejectChanges');
+			editIndex = undefined;
+		}
+		function getChanges(){
+			var rows = $('#dg').datagrid('getChanges');
+			alert(rows.length+' rows are changed!');
+		}
+
+</script>
+</body>
+</html>

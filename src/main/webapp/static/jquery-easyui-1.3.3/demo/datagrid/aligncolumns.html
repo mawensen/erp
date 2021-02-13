@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Aligning Columns in DataGrid - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Aligning Columns in DataGrid</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Use align and halign properties to set the alignment of the columns and their header.</div>
+</div>
+<div style="margin:10px 0;"></div>
+
+<table class="easyui-datagrid" data-options="singleSelect:true,collapsible:true,url:'../datagrid/datagrid_data1.json'" style="width:700px;height:250px"
+       title="Aligning Columns in DataGrid">
+    <thead>
+    <tr>
+        <th data-options="field:'itemid',width:80,halign:'center'">Item ID</th>
+        <th data-options="field:'productid',width:100,halign:'center'">Product</th>
+        <th data-options="field:'listprice',width:80,align:'right',halign:'center'">List Price</th>
+        <th data-options="field:'unitcost',width:80,align:'right',halign:'center'">Unit Cost</th>
+        <th data-options="field:'attr1',width:250,halign:'center'">Attribute</th>
+        <th data-options="field:'status',width:60,align:'center',halign:'center'">Status</th>
+    </tr>
+    </thead>
+</table>
+
+</body>
+</html>

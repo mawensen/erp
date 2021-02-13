@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Window Layout - jQuery EasyUI Demo</title>
+    <link href="../../themes/default/easyui.css" rel="stylesheet" type="text/css">
+    <link href="../../themes/icon.css" rel="stylesheet" type="text/css">
+    <link href="../demo.css" rel="stylesheet" type="text/css">
+    <script src="../../jquery.min.js" type="text/javascript"></script>
+    <script src="../../jquery.easyui.min.js" type="text/javascript"></script>
+</head>
+<body>
+<h2>Window Layout</h2>
+<div class="demo-info">
+    <div class="demo-tip icon-tip"></div>
+    <div>Using layout on window.</div>
+</div>
+<div style="margin:10px 0;">
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#w').window('open')">Open</a>
+    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#w').window('close')">Close</a>
+</div>
+<div class="easyui-window" data-options="iconCls:'icon-save'" id="w" style="width:500px;height:200px;padding:5px;"
+     title="Window Layout">
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'east',split:true" style="width:100px"></div>
+        <div data-options="region:'center'" style="padding:10px;">
+            jQuery EasyUI framework help you build your web page easily.
+        </div>
+        <div data-options="region:'south',border:false" style="text-align:right;padding:5px 0 0;">
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)"
+               onclick="javascript:alert('ok')">Ok</a>
+            <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)"
+               onclick="javascript:alert('cancel')">Cancel</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
