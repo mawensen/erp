@@ -20,6 +20,10 @@ Please modify lines 9 to 11.
 - Startup this springboot application. Run src/main/java/com/yufeng/JxcApplication.java
 - Open browser, access localhost:80. The username is admin and the passcode is 1.
 
+### Demo Screenshot:
+![](https://github.com/mawensen/erp/blob/master/resources/media/login.png)
+![](https://github.com/mawensen/erp/blob/master/resources/media/page.png)
+
 
 
 
