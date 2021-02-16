@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Shiro配置类
+ * Shiro Configuration
  *
  * @author Wensen Ma
  */
@@ -40,7 +40,6 @@ public class ShiroConfig {
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         shiroFilterFactoryBean.setLoginUrl("/login.html");
 
-
         // 拦截器.
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         // 配置不会被拦截的链接 顺序判断
@@ -50,7 +49,6 @@ public class ShiroConfig {
 
         // 配置退出过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
-
 
         // <!-- 过滤链定义，从上向下顺序执行，一般将 /**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
@@ -71,7 +69,7 @@ public class ShiroConfig {
     /**
      * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
      *
-     * @return
+     * @return MyRealm
      */
     @Bean
     public MyRealm myRealm() {
@@ -82,7 +80,7 @@ public class ShiroConfig {
     /**
      * Shiro生命周期处理器
      *
-     * @return
+     * @return LifecycleBeanPostProcessor
      */
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
@@ -93,7 +91,7 @@ public class ShiroConfig {
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
      *
-     * @return
+     * @return DefaultAdvisorAutoProxyCreator
      */
     @Bean
     @DependsOn({"lifecycleBeanPostProcessor"})
